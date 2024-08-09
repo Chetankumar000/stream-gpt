@@ -7,12 +7,15 @@ import { onAuthStateChanged } from "firebase/auth";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
-import { USER_AVATAR, LOGO } from "../utils/constant";
+import { USER_AVATAR, LOGO, languages } from "../utils/constant";
+import { toggleGPTSearchView } from "../utils/gptSlice";
+import { changeLang } from "../utils/configSlice";
 
 const Header = () => {
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
   const dispatch = useDispatch();
+  const showGPTSearch = useSelector((store) => store.gpt.showGPTSearch);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -49,6 +52,14 @@ const Header = () => {
       });
   };
 
+  const handleSearchClick = () => {
+    dispatch(toggleGPTSearchView());
+  };
+
+  const handleLangChange = (e) => {
+    dispatch(changeLang(e.target.value));
+  };
+
   return (
     <div className="w-full absolute px-6 py-2 bg-gradient-to-b from-black z-10 flex justify-between">
       {/* <img
@@ -57,14 +68,39 @@ const Header = () => {
       /> */}
       <img className=" w-56 " src={LOGO} alt="logo" />
       {user && (
-        <div onClick={handleSignOut} className="flex p-4">
-          <img
-            className="w-12 h-12 m-2 rounded-xl"
-            src={USER_AVATAR}
-            // src={user?.photoURL}
-            alt="userIcon"
-          />
-          <button className="font-bold text-white">{user?.displayName}</button>
+        <div className="flex">
+          {showGPTSearch && (
+            <div className="mx-4">
+              <select
+                className="p-4 mx-4 my-6 rounded-md bg-gray-900  border border-spacing-1  opacity-100 text-white "
+                onChange={handleLangChange}
+              >
+                {languages.map((lang) => (
+                  <option key={lang.id} value={lang.id}>
+                    {lang.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+          )}
+
+          <button
+            className="px-6 py-1 my-6 bg-purple-800 text-white rounded-md "
+            onClick={handleSearchClick}
+          >
+            {showGPTSearch ? "Home" : "Search AI"}
+          </button>
+          <div onClick={handleSignOut} className="flex p-4 m-1">
+            <img
+              className="w-12 h-12 m-2 rounded-xl cursor-pointer"
+              src={USER_AVATAR}
+              // src={user?.photoURL}
+              alt="userIcon"
+            />
+            <button className="font-bold text-white">
+              {user?.displayName}
+            </button>
+          </div>
         </div>
       )}
     </div>

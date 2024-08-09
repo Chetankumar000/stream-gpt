@@ -2,10 +2,11 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import MovieTitle from "./MovieTitle";
 import MovieBackground from "./MovieBackground";
+import Shimmer from "./Shimmer";
 
 const MainContainer = () => {
   const movies = useSelector((store) => store.movies?.nowPlayingMovies);
-  if (movies === null) return;
+  if (movies === null) return <Shimmer />;
 
   const moviesLength = movies.length;
 
