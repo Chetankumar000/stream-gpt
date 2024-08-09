@@ -12,7 +12,7 @@ export const API_OPTIONS = {
   headers: {
     accept: "application/json",
     Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNjk5ZDk2MmJlYzY4NGNjOGQ4MzhhNDI3YmQ0NmNiMiIsIm5iZiI6MTcyMzA4NTQwMS41NTkwOTksInN1YiI6IjY2YjQzMTI1YjNiMTBlYjE5YTExZDZmNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.FY_stsewEwhHieMBgi-Px1ponVYRPaASSmm5qrNA4tA",
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJlNjk5ZDk2MmJlYzY4NGNjOGQ4MzhhNDI3YmQ0NmNiMiIsIm5iZiI6MTcyMzE4NTQxMy4wMzE4MDcsInN1YiI6IjY2YjQzMTI1YjNiMTBlYjE5YTExZDZmNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.boKJP42wzZuZkTurKePWNElZkA51kVWzUWkvDqBuEsE",
   },
 };
 
@@ -24,3 +24,10 @@ export const languages = [
   { id: "ma", name: "Marathi" },
   { id: "esp", name: "Spanish" },
 ];
+
+export const OPENAI_KEY =
+  "sk-oW-bFa8SCiOYSdz5KDGr1IMhekFFL3gkVj782cp51ZT3BlbkFJQzlhUUy9teMDtPovkdv0LPVwNrA8L8p4b4_CPJ6lgA";
+
+export const GEMINI_KEY = process.env.REACT_APP_GEMINI_KEY
+  ? process.env.REACT_APP_GEMINI_KEY
+  : "AIzaSyBSevgnh3IrIb4sPlU8Z70yYwfvJr-2oJs";

@@ -61,12 +61,15 @@ const Header = () => {
   };
 
   return (
-    <div className="w-full absolute px-6 py-2 bg-gradient-to-b from-black z-10 flex justify-between">
+    <div
+      className="w-screen absolute px-6 py-2 bg-gradient-to-b from-black z-10 flex flex-col  
+    sm: md:flex-row md:justify-between"
+    >
       {/* <img
         src="https://cc-prod.scene7.com/is/image/CCProdAuthor/mascot-logo-design_P1_900x420?$pjpeg$&jpegSize=200&wid=900"
         alt="logo"
       /> */}
-      <img className=" w-56 " src={LOGO} alt="logo" />
+      <img className="md:w-36 lg:w-56 mx-auto md:mx-0" src={LOGO} alt="logo" />
       {user && (
         <div className="flex">
           {showGPTSearch && (
